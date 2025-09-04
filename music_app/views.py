@@ -1,20 +1,30 @@
 from django.shortcuts import render, redirect
-from .forms import PlaylistForm
+from .forms import PlaylistForm, LoginForm
+from django.contrib.auth.forms import AuthenticationForm
+
 
 # Create your views here.
 
+# @login_required(login_url='/login/')
 def create_playlist(request):
-    if request.method == "POST":
-        form = PlaylistForm(request.POST)
-        if form.is_valid():
-            playlist = form.save(commit=False)  # 先產生 Playlist 物件但不存入資料庫
-            playlist.user = request.user # 綁定目前登入的使用者
-            playlist.save() # 真正存到資料庫
-            form.save_m2m() # 存 ManyToMany 的歌曲
-            return redirect("playlist_list") # ------------------------------------
-        
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = PlaylistForm(request.POST)
+            if form.is_valid():
+                playlist = form.save(commit=False)
+                playlist.user = request.user
+                playlist.save()
+                form.save_m2m()
+                return redirect("playlist_list")
+        else:
+            form = PlaylistForm()
     else:
-        form = PlaylistForm()
+        form = AuthenticationForm()
 
     return render(request, "create_playlist.html", {"form": form})   # ------------------------------------
+
+
+
+def index(request):
+    return render(request, "index.html")
 

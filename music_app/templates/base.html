@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music_app</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-5.3.8-dist/css/bootstrap.css' %}">
+</head>
+
+<body>
+
+
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"> <a href="/"
+            class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"> <svg
+                class="bi me-2" width="40" height="32" aria-hidden="true">
+                <use xlink:href="#bootstrap"></use>
+            </svg> <span class="fs-4">Music_app</span> </a>
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="{% url 'create_playlist' %}" class="nav-link active"
+                    aria-current="page">新增音樂清單</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">我的音樂清單</a></li>
+    {% if user.is_authenticated %}
+            <li class="nav-item">
+                <form method="post" action="{% url 'logout' %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link" >登出</button>
+                </form>
+                
+    {% endif %}
+            <!--     <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">About</a></li> -->
+        </ul>
+    </header>
+
+
+    {% block content %}
+    <!-- 子模板內容 -->
+    {% endblock %}
+
+
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">首頁</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">關於</a></li>
+        </ul>
+        <p class="text-center text-body-secondary">© 2025 Music_app. All rights reserved.</p>
+    </footer>
+
+
+
+</body>
+
+</html>

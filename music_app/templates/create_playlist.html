@@ -1,16 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2> 建立音樂清單 </h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">建立</button>
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<h2> 建立音樂清單 </h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">建立清單</button>
+</form>
+
+{% else %}
+
+<h2>請登入</h2>
+<form method="post" action="{% url 'login' %}?next={{ request.path }}"> <!-- action 指定表單送出的目標 URL -->
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">登入</button>
+</form>
+
+{% endif %}
+
+{% endblock %}
