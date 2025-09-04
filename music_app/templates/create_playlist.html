@@ -6,6 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h2> 建立音樂清單 </h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">建立</button>
+    </form>
 </body>
 </html>
