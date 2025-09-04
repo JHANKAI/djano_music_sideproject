@@ -73,12 +73,28 @@ WSGI_APPLICATION = 'music_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'mssql',
+        'NAME': 'musicdb',
+        'USER': 'Emma',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'PORT': '1433', # SQL Server 預設 port
+        'OPTIONS': {
+            'driver': 'ODBC Driver 18 for SQL Server', # 安裝的 ODBC Driver 名稱
+            'extra_params': 'TrustServerCertificate=yes;Encrypt=no;' , # 避免加密無法連線資料庫
+        },
     }
 }
+
+
 
 
 # Password validation
