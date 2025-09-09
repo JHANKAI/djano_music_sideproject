@@ -1,55 +1,55 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music_app</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'plugins/bootstrap-5.3.8-dist/css/bootstrap.css' %}">
+    <!-- <link rel="stylesheet" href="/static/css/stylesheet.css"> -->
+    <link rel="stylesheet" href="/static/plugins/bootstrap-5.3.8-dist/css/bootstrap.css">
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
 
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}">Music_app</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="{% url 'create_playlist' %}">建立音樂清單</a>
+                    <a class="nav-link" href="{% url 'add_songs' %}">歌曲清單</a>
+                    <a class="nav-link" href="{% url 'playlist_view' %}">我的音樂清單</a>
+                    <!-- <a class="nav-link" href="{% url 'logout' %}">登出</a> -->
 
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"> <a href="/"
-            class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"> <svg
-                class="bi me-2" width="40" height="32" aria-hidden="true">
-                <use xlink:href="#bootstrap"></use>
-            </svg> <span class="fs-4">Music_app</span> </a>
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a href="{% url 'create_playlist' %}" class="nav-link active"
-                    aria-current="page">新增音樂清單</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">我的音樂清單</a></li>
-    {% if user.is_authenticated %}
-            <li class="nav-item">
-                <form method="post" action="{% url 'logout' %}" class="d-inline">
-                    {% csrf_token %}
-                    <button type="submit" class="nav-link" >登出</button>
-                </form>
-                
-    {% endif %}
-            <!--     <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">About</a></li> -->
-        </ul>
-    </header>
-
+                    {% if user.is_authenticated %}
+                    <form method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">登出</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
 
     {% block content %}
-    <!-- 子模板內容 -->
+
     {% endblock %}
 
-
-    <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">首頁</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">關於</a></li>
-        </ul>
-        <p class="text-center text-body-secondary">© 2025 Music_app. All rights reserved.</p>
+    <footer class="footer mt-auto py-3 bg-body-tertiary">
+        <div class="container">
+            <span class="text-body-secondary">© 2025 Music_app. All rights reserved.</span>
+        </div>
     </footer>
 
-
-
+    <script src="/static/plugins/bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
 </body>
 
 </html>

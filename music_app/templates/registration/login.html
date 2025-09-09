@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="height:100vh;">
+    <div class="card p-4" style="width: auto; min-width: 300px;">
+        <h2 class="text-center">登入</h2>
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-primary w-100" type="submit">登入</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

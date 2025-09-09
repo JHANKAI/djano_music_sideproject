@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+
+
+{% block content %}
+
+
+{% if messages %}
+<ul>
+  {% for message in messages %}
+  <li class="alert alert-{{ message.tags }}">{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+
+<h2 class="text-center mt-3">我的音樂清單</h2>
+<div class="d-flex flex-column align-items-center" style="height: 100vh;">
+  <ol class="list-group list-group-numbered">
+    {% for p in playlists %}
+    <li class="list-group-item d-flex justify-content-center align-items-center">
+      <a href="{% url 'playlist_detail' p.pk %}" class="me-2">{{ p.name }}</a>
+      <div>
+        <a href="{% url 'update_playlist' p.pk %}" class="btn btn-outline-primary btn-sm me-1">編輯</a>
+        <a href="{% url 'delete_playlist' p.pk %}" class="btn btn-outline-danger btn-sm">刪除</a>
+      </div>
+    </li>
+
+    {% empty %}
+    <P> 目前尚無音樂清單! </P>
+    {% endfor %}
+  </ol>
+</div>
+
+
+
+{% endblock %}

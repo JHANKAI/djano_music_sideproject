@@ -37,8 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'music_app',
+    'music_app', # 新增
+    'crispy_forms', # 新增
+    'crispy_bootstrap5', # 新增
 ]
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5" # 新增
+CRISPY_TEMPLATE_PACK = 'bootstrap5'   # 新增
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -140,3 +144,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 STATIC_URL = '/static/' # 別名
+LOGIN_URL='login'
+LOGIN_REDIRECT_URL = '/' 

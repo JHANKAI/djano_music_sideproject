@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+  {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="d-flex justify-content-center align-items-center " style="height: 100vh;">
+  <div class="card p-4" style="max-height: 80vh; overflow: auto;">
+    <h2>歌曲清單列表</h2>
+    <form method="POST" action="{% url 'add_songs' %}">
+      {% csrf_token %}
+      {{ form|crispy }}
+
+      <label>加入音樂清單</label>
+      <select name="playlist_id" class="form-select mb-2">
+        <option value="">-- 選擇現有音樂清單 --</option>
+        {% for p in playlists %}
+        <option value="{{ p.id }}">{{ p.name }}</option>
+        {% empty %}
+        <option disabled>您尚未建立任何音樂清單</option>
+        {% endfor %}
+      </select>
+
+      <hr>
+      <label for="new_playlist">或新增音樂清單</label>
+      <input type="text" name="new_playlist" id="new_playlist" class="form-control" placeholder="音樂清單名稱"><br>
+      <input type="text" name="new_description" id="new_description" class="form-control" placeholder="音樂清單描述">
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary mt-4">加入歌曲</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+<div class="card p-4">
+    <h2>
+        音樂清單：{{ playlist.name }} - {{ playlist.description|default:"無音樂清單描述" }}
+    </h2>
+    <ul>
+        {% for s in playlist.songs.all %}
+        <li> {{ s.song }} - {{ s.singer }}</li>
+        {% endfor %}
+    </ul>
+</div>
+</div>
+
+
+{% endblock %}

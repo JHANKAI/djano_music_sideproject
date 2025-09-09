@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card p-4">
+        <form method="POST" action="{% url 'update_playlist' object.pk %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary">儲存修改</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

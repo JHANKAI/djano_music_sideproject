@@ -1,28 +1,24 @@
-
 {% extends "base.html" %}
 
 
+
 {% block content %}
-<div class="container col-xl-10 col-xxl-8 px-4 py-5">
-    <div class="row align-items-center g-lg-5 py-5">
-        <div class="col-lg-7 text-center text-lg-start">
-            <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">打造你的專屬音樂世界</h1>
-            <p class="col-lg-10 fs-4">
-                從最愛的歌曲到每日推薦，隨時隨地掌握你的音樂節奏。立即建立你的個人播放清單，不僅能整理專屬音樂，還可以與好友分享你的收藏，互相發現新歌，讓每一天都有專屬旋律陪伴。無論是在工作、休息或聚會時，你都能享受最貼心的音樂體驗，打造屬於你的音樂世界。
-            </p>
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card p-4" style="max-width: 50vw;">
+        <div class="d-flex justify-content-center">
+            <h1>打造你的專屬音樂世界</h1>
         </div>
-        <div class="col-md-10 mx-auto col-lg-5">
-            <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
-                <div class="form-floating mb-3"> <input type="email" class="form-control" id="floatingInput"
-                        placeholder="name@example.com" data-listener-added_a6de6357="true"> <label
-                        for="floatingInput">電子郵件</label> </div>
-                <div class="form-floating mb-3"> <input type="password" class="form-control" id="floatingPassword"
-                        placeholder="Password"> <label for="floatingPassword">密碼</label> </div>
-                <div class="checkbox mb-3"> <label> <input type="checkbox" value="remember-me"> 記住我
-                    </label> </div> <button class="w-100 btn btn-lg btn-primary" type="submit">註冊</button>
-                <hr class="my-4"> <small class="text-body-secondary">點擊註冊，即表示您同意使用條款。</small>
-            </form>
+        <p>從最愛的歌曲到每日推薦，隨時隨地掌握你的音樂節奏。立即建立你的個人播放清單，不僅能整理專屬音樂，還可以與好友分享你的收藏，互相發現新歌，讓每一天都有專屬旋律陪伴。無論是在工作、休息或聚會時，你都能享受最貼心的音樂體驗，打造屬於你的音樂世界。
+        </p>
+
+
+        {% if not user.is_authenticated %}
+        <div class="d-flex justify-content-center gap-3">
+            <a class="btn btn-primary" href="{% url 'register' %}">立即註冊</a>
+            <a class="btn btn-outline-primary" href="{% url 'login' %}">登入</a>
         </div>
+        {% endif %}
     </div>
 </div>
+
 {% endblock %}
