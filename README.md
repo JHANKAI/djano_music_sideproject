@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     '{APP名稱}',
 ]
 ```
-4.**建立資料庫**
+4.建立資料庫
 ```
 python manage.py migrate 
 ```
@@ -58,7 +58,7 @@ python manage.py runserver
 STATIC_URL='/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"] # 放在專案根目錄的 static 資料夾
 ```
-** 放在 APP 裡的 static，Django 會自動找到，不一定要寫STATICFILES_DIRS，但放在專案根目錄的話就要設定。 **
+**放在 APP 裡的 static，Django 會自動找到，不一定要寫STATICFILES_DIRS，但放在專案根目錄的話就要設定。**
 ### 增加urls.py檔案於APP資料夾下，並設定
 ```python
 from django.urls import path
@@ -77,8 +77,8 @@ urlpatterns = [
 ```python
 path("login/", auth_views.LoginView.as_view(template_name="registration/login.html"), name="login")
 ```
-** .as_view() 只用在 class-based views（CBV），function-based views（FBV）不用。**  
-** url 最好養成習慣最後要加 "/"，但 Django 會自動 redirect 沒 / 的 URL **
+**.as_view() 只用在 class-based views（CBV），function-based views（FBV）不用。**  
+**url 最好養成習慣最後要加 "/"，但 Django 會自動 redirect 沒 / 的 URL**
 
 
 ### 專案urls.py 設定
@@ -92,7 +92,7 @@ urlpatterns = [
 ]
 ```
 
-** 建議做法（多 App 專案）**  
+**建議做法（多 App 專案)**  
 -在每個 App 下的 templates 和 static 資料夾中，再建立一個以 App 名稱命名的子資料夾  
 -將該 App 的模板與靜態檔案放入這個子資料夾  
 -這樣可以避免不同 App 有相同檔名時發生衝突  
